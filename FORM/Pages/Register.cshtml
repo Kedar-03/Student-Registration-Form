@@ -1,0 +1,86 @@
+﻿@page
+@model FORM.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Student Registration";
+}
+
+<div class="page-container">
+
+    <div class="registration-card">
+
+        <h2>Student Registration</h2>
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input asp-for="FullName" class="form-control" placeholder="Enter Full Name" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Email Address</label>
+                <input asp-for="Email" class="form-control" placeholder="Enter Email Address" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Contact Number</label>
+                <input asp-for="Contact" class="form-control" placeholder="Enter Contact Number" />
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Address</label>
+                <textarea asp-for="Address" class="form-control" placeholder="Enter Address"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Gender</label>
+
+                <select asp-for="Gender" class="form-select">
+
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+
+                </select>
+
+                <span asp-validation-for="Gender" class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-4">
+                <label>Date of Birth</label>
+                <input asp-for="DOB" type="date" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+
+            <button class="btn-register">
+
+                Register Student
+
+            </button>
+
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="success-box">
+
+                    @Model.Message
+
+                </div>
+            }
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+}
