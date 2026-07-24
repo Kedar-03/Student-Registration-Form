@@ -1,0 +1,108 @@
+﻿@page
+@model FORM.Pages.StudentsModel
+
+@{
+    ViewData["Title"] = "Student Records";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg rounded-4 p-4">
+
+        <h2 class="text-center text-primary fw-bold mb-4">
+            Student Registration Records
+        </h2>
+
+        <div class="d-flex justify-content-between mb-4">
+
+            <a asp-page="/Register" class="btn btn-primary">
+                ➕ Register New Student
+            </a>
+
+            <div>
+
+                <button class="btn btn-success me-2"
+                        onclick="window.print()">
+                    🖨 Print
+                </button>
+
+                <form method="post"
+                      asp-page-handler="Export"
+                      style="display:inline;">
+
+                    <button type="submit"
+                            class="btn btn-warning">
+                        📥 Export to Excel
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <table class="table table-hover table-striped table-bordered align-middle text-center">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+
+                        <td>@student.Id</td>
+                        <td>@student.FullName</td>
+                        <td>@student.Email</td>
+                        <td>@student.Contact</td>
+                        <td>@student.Address</td>
+                        <td>@student.Gender</td>
+                        <td>@student.DOB.ToString("dd-MM-yyyy")</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+
+    @@media print {
+
+        .btn {
+            display: none !important;
+        }
+
+        body {
+            background: white !important;
+        }
+
+        .card {
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        table {
+            width: 100%;
+        }
+
+    }
+
+</style>
